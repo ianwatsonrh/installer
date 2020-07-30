@@ -26,6 +26,10 @@ type Platform struct {
 	// to associate with the OpenShift load balancer.
 	LbFloatingIP string `json:"lbFloatingIP"`
 
+	// BootstrapFloatingIP is the IP address of an available floating IP in your OpenStack cluster
+        // to associate with the Bootstrap node
+        BootstrapFloatingIP string `json:"bootstrapFloatingIP"`
+
 	// ExternalDNS holds the IP addresses of dns servers that will
 	// be added to the dns resolution of all instances in the cluster.
 	// +optional

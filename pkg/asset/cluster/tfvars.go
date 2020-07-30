@@ -365,6 +365,7 @@ func (t *TerraformVariables) Generate(parents asset.Parents) error {
 		if err != nil {
 			return err
 		}
+
 		data, err = openstacktfvars.TFVars(
 			masters[0].Spec.ProviderSpec.Value.Object.(*openstackprovider.OpenstackProviderSpec),
 			installConfig.Config.Platform.OpenStack.Cloud,
@@ -380,6 +381,7 @@ func (t *TerraformVariables) Generate(parents asset.Parents) error {
 			clusterID.InfraID,
 			caCert,
 			bootstrapIgn,
+                        installConfig.Config.Platform.OpenStack.BootstrapFloatingIP,
 		)
 		if err != nil {
 			return errors.Wrapf(err, "failed to get %s Terraform variables", platform)

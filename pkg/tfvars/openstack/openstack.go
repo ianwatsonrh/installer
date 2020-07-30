@@ -31,10 +31,11 @@ type config struct {
 	RootVolumeType         string   `json:"openstack_master_root_volume_type,omitempty"`
 	BootstrapShim          string   `json:"openstack_bootstrap_shim_ignition,omitempty"`
 	ExternalDNS            []string `json:"openstack_external_dns,omitempty"`
+	BootstrapFloatingIP    string   `json:"openstack_bootstrap_floating_ip,omitempty"`
 }
 
 // TFVars generates OpenStack-specific Terraform variables.
-func TFVars(masterConfig *v1alpha1.OpenstackProviderSpec, cloud string, externalNetwork string, externalDNS []string, lbFloatingIP string, apiVIP string, dnsVIP string, ingressVIP string, trunkSupport string, octaviaSupport string, baseImage string, infraID string, userCA string, bootstrapIgn string) ([]byte, error) {
+func TFVars(masterConfig *v1alpha1.OpenstackProviderSpec, cloud string, externalNetwork string, externalDNS []string, lbFloatingIP string, apiVIP string, dnsVIP string, ingressVIP string, trunkSupport string, octaviaSupport string, baseImage string, infraID string, userCA string, bootstrapIgn string, bootstrapFloatingIP string) ([]byte, error) {
 
 	cfg := &config{
 		ExternalNetwork: externalNetwork,
@@ -47,6 +48,7 @@ func TFVars(masterConfig *v1alpha1.OpenstackProviderSpec, cloud string, external
 		ExternalDNS:     externalDNS,
 		TrunkSupport:    trunkSupport,
 		OctaviaSupport:  octaviaSupport,
+                BootstrapFloatingIP: bootstrapFloatingIP,
 	}
 
 	// Normally baseImage contains a URL that we will use to create a new Glance image, but for testing

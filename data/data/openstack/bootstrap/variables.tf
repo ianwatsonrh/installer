@@ -72,3 +72,8 @@ variable "root_volume_type" {
   type = string
   description = "The type of volume for the root block device."
 }
+
+variable "bootstrap_floating_ip" {
+  type = string
+  description = "Defines the floating ip for the bootstrap machine"
+}
